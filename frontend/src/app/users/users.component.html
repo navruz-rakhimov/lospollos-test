@@ -1,0 +1,21 @@
+<div class="user-list">
+  <h3>Users</h3>
+  <ul>
+    @for (user of users; track user.id) {
+      <li (click)="onSelect(user)" class="{{ user.isActive ? 'active' : 'inactive' }}">
+        {{ user.username }} - {{ user.isActive ? 'Active' : 'Inactive' }}
+      </li>
+    }
+  </ul>
+
+  @if (selectedUser){
+    <div class="dropdown-panel">
+      <p>Username: {{ selectedUser.username }}</p>
+      <label>
+        Active:
+        <input type="checkbox" [(ngModel)]="selectedUser.isActive">
+      </label>
+      <button (click)="updateUserActivity()">OK</button>
+    </div>
+  }
+</div>
