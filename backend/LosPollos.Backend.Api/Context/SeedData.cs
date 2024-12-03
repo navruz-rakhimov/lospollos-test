@@ -9,11 +9,7 @@ public class SeedData
     {
         if (!await dbContext.Users.AnyAsync())
         {
-            foreach (User user in GetUsers())
-            {
-                await dbContext.Users.AddAsync(user);
-            }
-            
+            await dbContext.Users.AddRangeAsync(GetUsers());
             await dbContext.SaveChangesAsync();
         }
     }
